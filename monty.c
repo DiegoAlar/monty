@@ -13,16 +13,8 @@ int main(int argc, char **argv)
 	char *line = NULL;
 	size_t len = 0;
 	char *tokenized = NULL;
-	int count = 0;
 	char *delim = " \n";
 
-	instruction_t st_funcs[] = {
-		{"push", push	},
-		{"pall", pall	},
-		{"pint", pint	},
-		{"pop", pop	},
-		{"swap", swap	}
-	};
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -37,21 +29,10 @@ int main(int argc, char **argv)
 	while ((getline(&line, &len, fp)) != -1)
 	{
 		tokenized = strtok(line, delim);
-
-		while (count < 5 && tokenized != NULL)
-		{
-			if (!strcmp((st_funcs[count].opcode), tokenized))
-			{
-				tokenized = strtok(NULL, delim);
-				if (!strcmp(st_funcs[count].opcode, "push"))
-					push_error_handler(stack, tokenized, error_line);
-				st_funcs[count].f(&stack, error_line);
-				break;
-			}
-			count++;
-		}
-		error_line++;
-		count = 0;
+		func_searcher(&stack, tokenized, &error_line);
 	}
+	free_stack(stack);
+	if (fclose(fp) == -1)
+		exit(EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

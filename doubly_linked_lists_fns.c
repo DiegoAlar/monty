@@ -8,8 +8,6 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *newN;
-
-	/*PRIVISIONAL */
 	line_number = line_number;
 
 	if (stack == NULL)
@@ -46,10 +44,8 @@ void push(stack_t **stack, unsigned int line_number)
 void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
-
 	line_number = line_number;
-	
-	printf("entered pall function\n");
+
 	while (temp)
 	{
 		printf("%d\n", temp->n);

@@ -14,12 +14,14 @@ void push_error_handler(stack_t *stack, char *tokenized, unsigned int line)
 		if (global_variable == 0 && strcmp(tokenized, "0"))
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line);
+			free_stack(stack);
 			exit(EXIT_FAILURE);
 		}
 	}
         else
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line);
+		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
 }

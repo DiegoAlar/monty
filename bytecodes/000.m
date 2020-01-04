@@ -1,5 +1,3 @@
-push 0            f                  
+push 121211a55
 push 2
-pall
-push h
-pall                    
+pall                   

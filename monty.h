@@ -43,4 +43,6 @@ void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void push_error_handler(stack_t *stack, char *tokenized, unsigned int line);
+void func_searcher(stack_t **stack, char *tokenized, unsigned int *error_line);
+void free_stack(stack_t *stack);
 #endif

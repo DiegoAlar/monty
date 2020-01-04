@@ -1,4 +1,5 @@
-                        push                              
-push                      2
-push 3
+push 0            f                  
+push 2
+pall
+push h
 pall                    

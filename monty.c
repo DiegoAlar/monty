@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 {
 	stack_t *stack = NULL;
 	FILE *fp;
-	int read;
+	unsigned int error_line = 1;
 	char *line = NULL;
 	size_t len = 0;
 	char *tokenized = NULL;
@@ -34,36 +34,23 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Error: Can't open file\n");
 		exit(EXIT_FAILURE);
 	}
-	while ((read = getline(&line, &len, fp)) != -1)
+	while ((getline(&line, &len, fp)) != -1)
 	{
-		printf("heyyyyyyyyyyy: %d\n", read);
 		tokenized = strtok(line, delim);
 
 		while (count < 5 && tokenized != NULL)
 		{
-			/*printf("array: %s -- token: %s\n", st_funcs[count].opcode, tokenized);*/
 			if (!strcmp((st_funcs[count].opcode), tokenized))
 			{
-				printf("111\n");
 				tokenized = strtok(NULL, delim);
-				printf("2222222\n");
-				if (!tokenized)
-					printf("is null\n");
 				if (!strcmp(st_funcs[count].opcode, "push"))
-				{
-					if (tokenized)
-						global_variable = atoi(tokenized);
-					else
-					{
-						fprintf(stderr, "L%d: usage: push integer\n", read);
-						exit(EXIT_FAILURE);
-					}
-				}
-				st_funcs[count].f(&stack, read);
+					push_error_handler(stack, tokenized, error_line);
+				st_funcs[count].f(&stack, error_line);
 				break;
 			}
 			count++;
 		}
+		error_line++;
 		count = 0;
 	}
 	return (EXIT_SUCCESS);

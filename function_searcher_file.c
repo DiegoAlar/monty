@@ -31,5 +31,11 @@ void func_searcher(stack_t **stack, char *token, unsigned int *line)
 		}
 		count++;
 	}
+	if (count == 5)
+	{
+		fprintf(stderr, "L%d: unknown instruction %s\n", *line, token);
+		free_stack(*stack);
+		exit(EXIT_FAILURE);		
+	}
 	*line = *line + 1;
 }

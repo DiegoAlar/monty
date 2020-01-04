@@ -9,14 +9,17 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *newN;
 
-	if (stack_t == NULL)
-		return (NULL);
+	/*PRIVISIONAL */
+	line_number = line_number;
+
+	if (stack == NULL)
+		return;
 	newN = malloc(sizeof(stack_t));
 	if (!newN)
-		return (NULL);
+		return;
 	if (*stack == NULL)
 	{
-		newN->n = n;
+		newN->n = global_variable;
 		newN->prev = NULL;
 		newN->next = NULL;
 		*stack = newN;
@@ -26,7 +29,7 @@ void push(stack_t **stack, unsigned int line_number)
 
 		if ((*stack)->prev == NULL)
 		{
-			newN->n = n;
+			newN->n = global_variable;
 			newN->next = *stack;
 			newN->prev = NULL;
 			(*stack)->prev = newN;
@@ -42,10 +45,15 @@ void push(stack_t **stack, unsigned int line_number)
   */
 void pall(stack_t **stack, unsigned int line_number)
 {
-	while (*h)
+	stack_t *temp = *stack;
+
+	line_number = line_number;
+	
+	printf("entered pall function\n");
+	while (temp)
 	{
-		printf("%d\n", *(h)->n);
-		*h = *(h)->next;
+		printf("%d\n", temp->n);
+		temp = temp->next;
 	}
 }
 /**
@@ -55,8 +63,9 @@ void pall(stack_t **stack, unsigned int line_number)
   */
 void pint(stack_t **stack, unsigned int line_number)
 {
+	line_number = line_number;
 	if (*stack)
-		printf("%d\n", *(stack)->n);
+		printf("%d\n", (*stack)->n);
 }
 /**
   * pop - for cases of index eq to zero
@@ -66,8 +75,8 @@ void pint(stack_t **stack, unsigned int line_number)
 void pop(stack_t **stack, unsigned int line_number)
 {
 
-	char *mse_err_0 = "L";
-	char *mge_err_1 = ": can't pop an empty stack\n";
+	/*char *mse_err_0 = "L";*/
+	/*char *mge_err_1 = ": can't pop an empty stack\n";*/
 	if (stack || *stack)
 	{
 		if ((*stack)->next)
@@ -84,10 +93,10 @@ void pop(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
-		write(STDERR_FILENO, "L", 1);
+		/*write(STDERR_FILENO, "L", 1);
 		write(STDERR_FILENO, itoa(line_number), strlen(itoa(line_number)));
-		write(STDERR_FILENO, mge_err_1, strlen(mge_err_1));
-		fprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n", line_number);
+		write(STDERR_FILENO, mge_err_1, strlen(mge_err_1));*/
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 	}
 }
 /**
@@ -95,8 +104,10 @@ void pop(stack_t **stack, unsigned int line_number)
   * @stack: pointer to head of list
   * @line_number: line number
   */
-/*void swap(stack_t **stack, unsigned int line_number)
+void swap(stack_t **stack, unsigned int line_number)
 {
-	
-}*/
+	*stack = NULL;
+	line_number = line_number;
+	return;	
+}
 

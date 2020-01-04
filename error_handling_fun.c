@@ -1,5 +1,26 @@
 #include "monty.h"
 /**
+  * really_number - verifies that the string is really a number
+  * @number: string to be verified
+  * Return: a flag to catch an error
+  */
+int really_number(char *number)
+{
+	int c = 0;
+	int flag = 1;
+
+	while (number[c] != '\0')
+	{
+		if (number[c] < 48 || number[c] > 57)
+		{
+			flag = 0;
+			return (flag);
+		}
+		c++;
+	}
+	return (flag);
+}
+/**
   * push_error_handler - handles the errors for push func
   * @stack: a stack to be freed if needed
   * @tokenized: string to compare
@@ -8,7 +29,7 @@
 void push_error_handler(stack_t *stack, char *tokenized, unsigned int line)
 {
 	stack = stack;
-	if (tokenized)
+	if (tokenized && really_number(tokenized))
 	{
 		global_variable = atoi(tokenized);
 		if (global_variable == 0 && strcmp(tokenized, "0"))

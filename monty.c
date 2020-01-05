@@ -30,6 +30,11 @@ int main(int argc, char **argv)
 	while ((getline(&line, &len, fp)) != EOF)
 	{
 		tokenized = strtok(line, delim);
+		if (tokenized[0] == '#')
+		{
+			error_line = error_line + 1;
+			continue;
+		}
 		fn_s(&stack, &tokenized, &error_line, fp, line);
 	}
 	free_stack(stack);

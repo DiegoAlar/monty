@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 	char *line = NULL;
 	size_t len = 0;
 	char *tokenized = NULL;
-	char *delim = " \n";
+	char *delim = " \n\t";
 
 	if (argc != 2)
 	{

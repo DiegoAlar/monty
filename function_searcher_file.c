@@ -10,7 +10,7 @@
 void fn_s(stack_t **stack, char **tok, unsigned int *ln, FILE *fp, char *ln_f)
 {
 	int count = 0;
-	char *delim = " \n";
+	char *delim = " \n\t";
 
 	instruction_t st_funcs[] = {
 		{"push", push   },

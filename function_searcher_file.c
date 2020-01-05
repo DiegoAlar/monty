@@ -20,9 +20,10 @@ void fn_s(stack_t **stack, char **tok, unsigned int *ln, FILE *fp, char *ln_f)
 		{"swap", swap   },
 		{"add", add	},
 		{"nop", nop	},
-		{"sub", sub	}
+		{"sub", sub	},
+		{"div", divide	}
 	};
-	while (count < 8 && *tok != NULL)
+	while (count < 9 && *tok != NULL)
 	{
 		if (!strcmp((st_funcs[count].opcode), *tok))
 		{
@@ -37,7 +38,7 @@ void fn_s(stack_t **stack, char **tok, unsigned int *ln, FILE *fp, char *ln_f)
 		}
 		count++;
 	}
-	if (count == 8)
+	if (count == 9)
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", *ln, *tok);
 		free_stack(*stack);

@@ -36,7 +36,7 @@ void p_err(stack_t *stack, char **tok, unsigned int ln, FILE *fp, char *ln_f)
 
 		if (global_variable == 0 && strcmp(*tok, "0"))
 		{
-			fprintf(stderr, "L%d: usage: push integer\n", ln);
+			fprintf(stderr, "L%u: usage: push integer\n", ln);
 			free_stack(stack);
 			free(ln_f);
 			fclose(fp);
@@ -45,7 +45,7 @@ void p_err(stack_t *stack, char **tok, unsigned int ln, FILE *fp, char *ln_f)
 	}
 	else
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", ln);
+		fprintf(stderr, "L%u: usage: push integer\n", ln);
 		free_stack(stack);
 		free(ln_f);
 		fclose(fp);

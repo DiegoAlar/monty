@@ -1,4 +1,3 @@
-ush 2147483647 
-
-
-	pall 	
+push 1
+push 2
+pall

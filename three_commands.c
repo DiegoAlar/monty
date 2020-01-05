@@ -1,11 +1,10 @@
 #include "monty.h"
-
 /**
-  * modulus - computes the module of two top elements  
+  * modulus - computes the module of two top elements
   * @stack: pointer to the head of stack
   * @line_number: number of line monty is currently reading
   *
-  */
+ */
 void module(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL || (*stack)->next == NULL)

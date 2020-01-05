@@ -29,14 +29,6 @@ int main(int argc, char **argv)
 	while ((getline(&line, &len, fp)) != -1)
 	{
 		tokenized = strtok(line, delim);
-		if (tokenized == NULL)
-		{
-			fprintf(stderr, "Error: malloc failed\n");
-			free(stack);
-			free(line);
-			fclose(fp);
-			exit(EXIT_FAILURE);
-		}
 		fn_s(&stack, &tokenized, &error_line, fp, line);
 	}
 	free_stack(stack);

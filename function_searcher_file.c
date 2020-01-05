@@ -36,7 +36,7 @@ void fn_s(stack_t **stack, char **tok, unsigned int *ln, FILE *fp, char *ln_f)
 	}
 	if (count == 5)
 	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", *ln, *tok);
+		fprintf(stderr, "L%u: unknown instruction %s\n", *ln, *tok);
 		free_stack(*stack);
 		free(ln_f);
 		fclose(fp);

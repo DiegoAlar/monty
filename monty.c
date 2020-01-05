@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while ((getline(&line, &len, fp)) != -1)
+	while ((getline(&line, &len, fp)) != EOF)
 	{
 		tokenized = strtok(line, delim);
 		fn_s(&stack, &tokenized, &error_line, fp, line);

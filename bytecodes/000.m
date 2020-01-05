@@ -1,2 +1,3 @@
 push 1
-mul
+push 10
+mod

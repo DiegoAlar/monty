@@ -44,4 +44,5 @@ void p_err(stack_t *stack, char **tok, unsigned int ln, FILE *fp, char *ln_f);
 void fn_s(stack_t **stack, char **tok, unsigned int *ln, FILE *fp, char *ln_f);
 void free_stack(stack_t *stack);
 void add(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
 #endif

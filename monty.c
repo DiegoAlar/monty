@@ -2,8 +2,9 @@
 int global_variable = 0;
 /**
   * main - main function
-  * @argc - number of elements as arguments
-  * @argv - array with argument elements
+  * @argc: number of elements as arguments
+  * @argv: array with argument elements
+  * Return: Exit_success when succeded, otherwise failure
   */
 int main(int argc, char **argv)
 {
@@ -29,9 +30,10 @@ int main(int argc, char **argv)
 	while ((getline(&line, &len, fp)) != -1)
 	{
 		tokenized = strtok(line, delim);
-		func_searcher(&stack, tokenized, &error_line, fp);
+		fn_s(&stack, &tokenized, &error_line, fp, line);
 	}
 	free_stack(stack);
+	free(line);
 	if (fclose(fp) == -1)
 		exit(EXIT_FAILURE);
 	return (EXIT_SUCCESS);

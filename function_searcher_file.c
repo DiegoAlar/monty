@@ -1,11 +1,13 @@
 #include "monty.h"
 /**
-  * func_searcher - searches a function given a struct
+  * fn_s - searches a function given a struct
   * @stack: the head of the stack
-  * @token: the string to compare with the struct
-  *
+  * @tok: the string to compare with the struct
+  * @ln: currently line of .m file
+  * @fp: file descriptor to be closed
+  * @ln_f: line from getline to be freed
   */
-void func_searcher(stack_t **stack, char *token, unsigned int *line, FILE *fp)
+void fn_s(stack_t **stack, char **tok, unsigned int *ln, FILE *fp, char *ln_f)
 {
 	int count = 0;
 	char *delim = " \n";
@@ -17,26 +19,26 @@ void func_searcher(stack_t **stack, char *token, unsigned int *line, FILE *fp)
 		{"pop", pop     },
 		{"swap", swap   }
 	};
-	while (count < 5 && token != NULL)
+	while (count < 5 && *tok != NULL)
 	{
-		if (!strcmp((st_funcs[count].opcode), token))
+		if (!strcmp((st_funcs[count].opcode), *tok))
 		{
-			token = strtok(NULL, delim);
+			*tok = strtok(NULL, delim);
 			if (!strcmp(st_funcs[count].opcode, "push"))
 			{
-				push_error_handler(*stack, token, *line, fp);
+				p_err(*stack, tok, *ln, fp, ln_f);
 			}
-			st_funcs[count].f(stack, *line);
+			st_funcs[count].f(stack, *ln);
 			break;
 		}
 		count++;
 	}
 	if (count == 5)
 	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", *line, token);
+		fprintf(stderr, "L%d: unknown instruction %s\n", *ln, *tok);
 		free_stack(*stack);
-		free(token);
-		exit(EXIT_FAILURE);		
+		free(ln_f);
+		exit(EXIT_FAILURE);
 	}
-	*line = *line + 1;
+	*ln = *ln + 1;
 }

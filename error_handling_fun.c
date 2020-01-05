@@ -21,31 +21,33 @@ int really_number(char *number)
 	return (flag);
 }
 /**
-  * push_error_handler - handles the errors for push func
+  * p_err - handles the errors for push func
   * @stack: a stack to be freed if needed
-  * @tokenized: string to compare
-  * @line: the line to print if error ocurred
+  * @tok: string to compare
+  * @ln: the line to print if error ocurred
+  * @fp: the file to be closed
+  * @ln_f: string from getline to be freed
   */
-void push_error_handler(stack_t *stack, char *tokenized, unsigned int line, FILE *fp)
+void p_err(stack_t *stack, char **tok, unsigned int ln, FILE *fp, char *ln_f)
 {
-	stack = stack;
-	if (tokenized && really_number(tokenized))
+	if (*tok && really_number(*tok))
 	{
-		global_variable = atoi(tokenized);
-		if (global_variable == 0 && strcmp(tokenized, "0"))
+		global_variable = atoi(*tok);
+
+		if (global_variable == 0 && strcmp(*tok, "0"))
 		{
-			fprintf(stderr, "L%d: usage: push integer\n", line);
+			fprintf(stderr, "L%d: usage: push integer\n", ln);
 			free_stack(stack);
-			free(tokenized);
+			free(ln_f);
 			fclose(fp);
 			exit(EXIT_FAILURE);
 		}
 	}
-        else
+	else
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line);
+		fprintf(stderr, "L%d: usage: push integer\n", ln);
 		free_stack(stack);
-		free(tokenized);
+		free(ln_f);
 		fclose(fp);
 		exit(EXIT_FAILURE);
 	}

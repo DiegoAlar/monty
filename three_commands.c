@@ -1,6 +1,7 @@
 #include "monty.h"
+
 /**
-  * modulus - computes rest of the division second top element of stack 
+  * modulus - computes the module of two top elements  
   * @stack: pointer to the head of stack
   * @line_number: number of line monty is currently reading
   *

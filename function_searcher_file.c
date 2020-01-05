@@ -23,6 +23,7 @@ void fn_s(stack_t **stack, char **tok, unsigned int *ln, FILE *fp, char *ln_f)
 	{
 		if (!strcmp((st_funcs[count].opcode), *tok))
 		{
+
 			*tok = strtok(NULL, delim);
 			if (!strcmp(st_funcs[count].opcode, "push"))
 			{

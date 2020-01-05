@@ -5,7 +5,7 @@
   * @token: the string to compare with the struct
   *
   */
-void func_searcher(stack_t **stack, char *token, unsigned int *line)
+void func_searcher(stack_t **stack, char *token, unsigned int *line, FILE *fp)
 {
 	int count = 0;
 	char *delim = " \n";
@@ -24,7 +24,7 @@ void func_searcher(stack_t **stack, char *token, unsigned int *line)
 			token = strtok(NULL, delim);
 			if (!strcmp(st_funcs[count].opcode, "push"))
 			{
-				push_error_handler(*stack, token, *line);
+				push_error_handler(*stack, token, *line, fp);
 			}
 			st_funcs[count].f(stack, *line);
 			break;
@@ -35,6 +35,7 @@ void func_searcher(stack_t **stack, char *token, unsigned int *line)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", *line, token);
 		free_stack(*stack);
+		free(token);
 		exit(EXIT_FAILURE);		
 	}
 	*line = *line + 1;

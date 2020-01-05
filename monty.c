@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 	while ((getline(&line, &len, fp)) != -1)
 	{
 		tokenized = strtok(line, delim);
-		func_searcher(&stack, tokenized, &error_line);
+		func_searcher(&stack, tokenized, &error_line, fp);
 	}
 	free_stack(stack);
 	if (fclose(fp) == -1)

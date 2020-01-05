@@ -11,7 +11,7 @@ int really_number(char *number)
 
 	while (number[c] != '\0')
 	{
-		if (number[c] < 48 || number[c] > 57)
+		if ((number[c] < 48 || number[c] > 57) && number[c] != '-')
 		{
 			flag = 0;
 			return (flag);
@@ -26,7 +26,7 @@ int really_number(char *number)
   * @tokenized: string to compare
   * @line: the line to print if error ocurred
   */
-void push_error_handler(stack_t *stack, char *tokenized, unsigned int line)
+void push_error_handler(stack_t *stack, char *tokenized, unsigned int line, FILE *fp)
 {
 	stack = stack;
 	if (tokenized && really_number(tokenized))
@@ -36,6 +36,8 @@ void push_error_handler(stack_t *stack, char *tokenized, unsigned int line)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line);
 			free_stack(stack);
+			free(tokenized);
+			fclose(fp);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -43,6 +45,8 @@ void push_error_handler(stack_t *stack, char *tokenized, unsigned int line)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line);
 		free_stack(stack);
+		free(tokenized);
+		fclose(fp);
 		exit(EXIT_FAILURE);
 	}
 }

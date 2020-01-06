@@ -21,3 +21,25 @@ void module(stack_t **stack, unsigned int line_number)
 	pop(stack, line_number);
 }
 
+/**
+  * print_char_fn - prints euivalent char of top stack num
+  * @stack: pointer to the head of stack
+  * @line_number: number of line monty is currently reading
+  *
+ */
+void print_char_fn(stack_t **stack, unsigned int line_number)
+{
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->n < 32 && (*stack)->n > 126)
+	{
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	else
+		printf("%c\n", (*stack)->n);
+}
+

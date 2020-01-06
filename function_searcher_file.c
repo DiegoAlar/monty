@@ -11,7 +11,7 @@
   */
 void eArr(stack_t **st, unsigned int *ln, int c, char **tk, FILE *fp, char *le)
 {
-	if (c == 11)
+	if (c == 12)
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", *ln, *tk);
 		free_stack(*st);
@@ -45,9 +45,10 @@ void fn_s(stack_t **stack, char **tok, unsigned int *ln, FILE *fp, char *ln_f)
 		{"sub", sub	},
 		{"div", divide	},
 		{"mul", multiply},
-		{"mod", module	}
+		{"mod", module	},
+		{"pchar", print_char_fn}
 	};
-	while (count < 11 && *tok != NULL)
+	while (count < 12 && *tok != NULL)
 	{
 		if (*tok[0] == '#')
 			break;

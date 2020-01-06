@@ -55,7 +55,10 @@ void print_chars_fn(stack_t **stack, unsigned int line_number)
 
 	line_number = line_number;
 	if (*stack == NULL)
+	{
 		printf("\n");
+		return;
+	}
 	while ((temp->n > 31 && temp->n < 127) && temp)
 	{
 		printf("%c", temp->n);

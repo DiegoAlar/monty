@@ -59,7 +59,7 @@ void print_chars_fn(stack_t **stack, unsigned int line_number)
 		printf("\n");
 		return;
 	}
-	while ((temp->n >= 0 && temp->n < 255) && temp && temp->n != 0)
+	while ((temp->n > 31 && temp->n < 127) && temp && temp->n != 0)
 	{
 		printf("%c", temp->n);
 		temp = temp->next;

@@ -1,4 +1,26 @@
 #include "monty.h"
+
+/**
+  * eArr - evaluates case no command found in array
+  * @st: double pointer of the stack
+  * @ln: number of the line to print error
+  * @c: counter of the array
+  * @tok: command to see if in array
+  * @fp: file descriptor if in need to be closed
+  * @le: line from getline to be freed
+  */
+void eArr(stack_t **st, unsigned int *ln, int c, char **tk, FILE *fp, char *le)
+{
+	if (c == 11)
+	{
+		fprintf(stderr, "L%u: unknown instruction %s\n", *ln, *tk);
+		free_stack(*st);
+		free(le);
+		fclose(fp);
+		exit(EXIT_FAILURE);
+	}
+}
+
 /**
   * fn_s - searches a function given a struct
   * @stack: the head of the stack
@@ -27,6 +49,8 @@ void fn_s(stack_t **stack, char **tok, unsigned int *ln, FILE *fp, char *ln_f)
 	};
 	while (count < 11 && *tok != NULL)
 	{
+		if (*tok[0] == '#')
+			break;
 		if (!strcmp((st_funcs[count].opcode), *tok))
 		{
 
@@ -40,13 +64,6 @@ void fn_s(stack_t **stack, char **tok, unsigned int *ln, FILE *fp, char *ln_f)
 		}
 		count++;
 	}
-	if (count == 11)
-	{
-		fprintf(stderr, "L%u: unknown instruction %s\n", *ln, *tok);
-		free_stack(*stack);
-		free(ln_f);
-		fclose(fp);
-		exit(EXIT_FAILURE);
-	}
+	eArr(stack, ln, count, tok, fp, ln_f);
 	*ln = *ln + 1;
 }

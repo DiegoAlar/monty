@@ -40,6 +40,26 @@ void print_char_fn(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	else
-		printf("%c\n", (*stack)->n);
+		printf("%c", (*stack)->n);
 }
 
+/**
+  * print_chars_fn - prints euivalent char of top stack num
+  * @stack: pointer to the head of stack
+  * @line_number: number of line monty is currently reading
+  *
+ */
+void print_chars_fn(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp = *stack;
+
+	line_number = line_number;
+	if (*stack == NULL)
+		printf("\n");
+	while ((temp->n > 31 && temp->n < 127) && temp)
+	{
+		printf("%c", temp->n);
+		temp = temp->next;
+	}
+	printf("\n");
+}

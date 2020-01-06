@@ -7,7 +7,6 @@ push 110
 push 0
 push 110
 push 111
-push 0
 push 116
 push 114
 push 101
